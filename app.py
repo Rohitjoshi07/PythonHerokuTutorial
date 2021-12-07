@@ -15,8 +15,7 @@ def mimic(update, context):
     context.bot.send_message(update.message.chat.id, update.message.text)
 
 def details(update, context):
-    print(update)
-    context.bot.send_message(update.message.chat.id, json.dumps(update,indent=3))
+    context.bot.send_message(update.message.chat.id, update)
 
 def error(update, context):
     context.bot.send_message(update.message.chat.id, "Oops! Error encountered!")
@@ -28,6 +27,7 @@ def main():
 
     dp.add_handler(CommandHandler("start",start))
     dp.add_handler(CommandHandler("details", details))
+
     dp.add_handler(MessageHandler(Filters.text, mimic))
 
 
