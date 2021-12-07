@@ -1,7 +1,7 @@
 from telegram.ext import Updater
 from telegram.ext import  CommandHandler, MessageHandler, Filters
 import  os
-
+import json
 TOKEN = os.environ.get("TELEGRAM_ID")
 
 def start(update, context):
@@ -16,7 +16,7 @@ def mimic(update, context):
 
 def details(update, context):
     print(update)
-    context.bot.send_message(update.message.chat.id, str(update))
+    context.bot.send_message(update.message.chat.id, json.dumps(update,indent=3))
 
 def error(update, context):
     context.bot.send_message(update.message.chat.id, "Oops! Error encountered!")
