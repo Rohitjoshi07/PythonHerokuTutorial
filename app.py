@@ -19,7 +19,7 @@ def details(update, context):
     context.bot.send_message(update.message.chat.id, str(update))
 
 def error(update, context):
-    context.bot.send_message(update.message.chat.id, "OOps! Error encountered!")
+    context.bot.send_message(update.message.chat.id, "Oops! Error encountered!")
 
 def main():
     updater = Updater(token=TOKEN, use_context=True)
@@ -27,8 +27,9 @@ def main():
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("start",start))
+    dp.add_handler(CommandHandler("details", details))
     dp.add_handler(MessageHandler(Filters.text, mimic))
-    dp.add_handler(CommandHandler("details",details))
+
 
     dp.add_error_handler(error)
 
