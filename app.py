@@ -1,6 +1,7 @@
 from telegram.ext import Updater
 from telegram.ext import  CommandHandler, MessageHandler
 import  os
+
 TOKEN = os.environ.get("TELEGRAM_ID")
 
 def start(update, context):
@@ -19,7 +20,7 @@ def error(update, context):
     context.bot.send_message(update.message.chat.id, "OOps! Error encountered!")
 
 def main():
-    updater = Updater(token=TOKEN)
+    updater = Updater(token=TOKEN, use_context=True)
 
     dp = updater.dispatcher
 
