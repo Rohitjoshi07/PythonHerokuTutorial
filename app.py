@@ -1,5 +1,5 @@
 from telegram.ext import Updater
-from telegram.ext import  CommandHandler, MessageHandler
+from telegram.ext import  CommandHandler, MessageHandler, Filters
 import  os
 
 TOKEN = os.environ.get("TELEGRAM_ID")
@@ -9,6 +9,7 @@ def start(update, context):
 
     msg = "Hi"+yourname+"! Welcome to mimic bot."
     context.bot.send_message(update.message.chat.id, msg)
+
 
 def mimic(update, context):
     context.bot.send_message(update.message.chat.id, update.message.text)
@@ -25,7 +26,7 @@ def main():
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("start",start))
-    dp.add_handler(MessageHandler(mimic))
+    dp.add_handler(MessageHandler(Filters.text, mimic))
     dp.add_handler(CommandHandler("details",details))
 
     dp.add_error_handler(error)
